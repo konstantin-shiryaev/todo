@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #c3c3c3;
+    padding: 3px 0;
+
+}
+.todos {
+    height: 45vh;
+
+}
+.todo-list {
+    height: 90%;
+
+}
+.hero-body .box {
+    overflow: scroll;
+}
+.is-done {
+    text-decoration: line-through;
+    color: blue;
+}

@@ -1,0 +1,29 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <form class="notification" method="post">
+                    {%  csrf_token %}
+                    <div class="has-text-centered">
+
+                        <div class="title is-4">
+                            Вы действительно хотите удалить продукт?
+                        </div>
+                        <div class="buttons is-centered mt-6">
+                            <button type="submit" class="button is-success">Да</button>
+                            <a href="{% url 'app:home' %}" class="button is-danger">Нет</a>
+                        </div>
+                    </div>
+                </form>
+                <!-- Any other Bulma elements you want -->
+            </div>
+            <a href="{% url 'app:home' %}" class="modal-close is-large" aria-label="close"></a>
+        </div>
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-5">
+                <form class="box" method="post">
+                    <div class="title is-5 has-text-centered">
+                        Редактирование задачи №{{ todo.pk }}
+                    </div>
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" name="todo" required class="input" value="{{ todo.text }}">
+                    </div>
+                    <div class="buttons is-centered">
+                        <button type="submit" class="button is-primary">
+                            Отредактировать
+
+                        </button>
+                        <a href="{% url 'app:home' %}" class="button is-info">
+                            На главную
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

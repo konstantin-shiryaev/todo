@@ -1,0 +1,72 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns is-centered">
+
+            <div class="column is-5">
+                <div class="box has-background-info-light p-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+
+                            <input type="text" class="input" name="todo" placeholder="Введите текст задачи">
+                            <button type="submit" class="button is-success">Добавить</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="box has-background-info-light px-5 py-2 todos">
+
+
+                    <div class="todo-list">
+
+                        {% for todo in todos %}
+
+                            <div class="todo columns is-vcentered">
+                                <div class="column is-1">
+                                    {% if todo.is_done %}
+                                        <a href="{% url 'app:home' %}?todo={{ todo.pk }}" class="has-text-info">
+                                            <ion-icon name="checkbox-outline" class="is-size-4"></ion-icon>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'app:home' %}?todo={{ todo.pk }}" class="has-text-info">
+                                            <ion-icon name="square-outline" class="is-size-4"></ion-icon>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                <div class="column is-9">
+                                    <div class="content is-size-5 {% if todo.is_done %} is-done {% endif %}">
+                                        {{ todo.text }}
+                                    </div>
+                                </div>
+                                <div class="column is-4">
+                                    <div class="icons">
+                                        <a href="{% url 'app:edit_todo' todo.pk %}" class="button is-small is-link">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </a>
+                                        <a href="{% url 'app:delete_todo' todo.pk %}"
+                                           class="button is-small is-warning">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="section has-background-info-light">
+        <div class="is-flex is-justify-content-space-evenly">
+            <div class="content is-size-5">Все: {{ stat.all }}</div>
+            <div class="content is-size-5">Завершенные: {{ stat.finished }}</div>
+            <div class="content is-size-5">Открытые: {{ stat.open }}</div>
+        </div>
+    </div>
+{% endblock %}
